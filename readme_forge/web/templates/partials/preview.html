@@ -1,0 +1,25 @@
+<main class="panel-center">
+  <div class="preview-tabs" role="tablist">
+    <button class="preview-tab active" type="button" role="tab" aria-selected="true"
+            aria-controls="preview-pane" data-tab="preview-pane">Preview</button>
+    <button class="preview-tab" type="button" role="tab" aria-selected="false"
+            aria-controls="raw-pane" data-tab="raw-pane">Markdown</button>
+    <button class="preview-tab" type="button" role="tab" aria-selected="false"
+            aria-controls="workflows-pane" data-tab="workflows-pane" id="workflows-tab">Workflows</button>
+  </div>
+  <div class="preview-body">
+    <div id="preview-pane" class="pane active" role="tabpanel">
+      <div class="empty-state" id="empty-state">
+        <div class="empty-title">Your README awaits</div>
+        <div class="empty-desc">Enter a GitHub username or profile URL to generate a profile README.</div>
+      </div>
+      <div class="gh-preview" id="gh-preview" hidden></div>
+    </div>
+    <div id="raw-pane" class="pane" role="tabpanel">
+      <pre id="raw-code"></pre>
+    </div>
+    <div id="workflows-pane" class="pane" role="tabpanel">
+      <pre id="workflows-code">Fetch a profile to see which GitHub Actions your README needs.</pre>
+    </div>
+  </div>
+</main>

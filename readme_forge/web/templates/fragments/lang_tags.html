@@ -1,0 +1,5 @@
+{% for lang in languages %}
+<button type="button" class="lang-tag" aria-pressed="false" data-lang="{{ lang }}">{{ lang }}</button>
+{% else %}
+<p class="hint">No languages detected.</p>
+{% endfor %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block body %}
+<header>
+  <div class="logo">
+    <div class="logo-icon">R</div>
+    README<span>.forge</span>
+  </div>
+  <div class="header-actions">
+    <div class="status-indicator">
+      <span class="status-dot" id="status-dot"></span>
+      <span id="status-text">Ready</span>
+    </div>
+    <button class="btn btn-ghost" id="copy-btn" type="button">Copy</button>
+    <button class="btn btn-accent" id="download-btn" type="button">Download .md</button>
+  </div>
+</header>
+
+<div class="app" id="app"
+     data-presets='{{ presets | tojson }}'
+     data-default-order='{{ sections | map(attribute="id") | list | tojson }}'>
+  <aside class="panel-left">
+    <div class="panel-section">
+      <div class="section-label">GitHub Profile</div>
+      <form class="url-input-wrap" id="fetch-form">
+        <input type="text" class="url-input" id="gh-user" placeholder="github.com/username"
+               autocomplete="off" spellcheck="false" aria-label="GitHub username or profile URL">
+        <button class="fetch-btn" id="fetch-btn" type="submit" aria-label="Fetch profile">&rarr;</button>
+      </form>
+      <div class="loading-bar" id="loading-bar"></div>
+      <div class="error-msg" id="error-msg" role="alert"></div>
+    </div>
+
+    <div class="panel-section" data-needs-profile hidden>
+      <div class="section-label">Profile</div>
+      <div class="profile-card" id="profile-card"></div>
+    </div>
+
+    <div class="panel-scroll">
+      {% include "partials/customize.html" %}
+      {% include "partials/showcase.html" %}
+      {% include "partials/socials.html" %}
+      {% include "partials/featured.html" %}
+      {% include "partials/languages.html" %}
+      {% include "partials/sections.html" %}
+      {% include "partials/appearance.html" %}
+      {% include "partials/advanced.html" %}
+    </div>
+  </aside>
+
+  {% include "partials/preview.html" %}
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+{% endblock %}

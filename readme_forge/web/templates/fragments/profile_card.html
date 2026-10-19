@@ -1,0 +1,11 @@
+<div class="avatar-wrap">{% if user.avatar_url.startswith("https://") %}<img src="{{ user.avatar_url }}" alt="">{% endif %}</div>
+<div class="profile-info">
+  <div class="profile-name">{{ user.name or user.login }}</div>
+  <div class="profile-login">@{{ user.login }}</div>
+  {% if user.bio %}<div class="profile-bio">{{ user.bio }}</div>{% endif %}
+  <div class="profile-meta">
+    <span><strong>{{ user.public_repos }}</strong> repos</span>
+    <span><strong>{{ user.followers }}</strong> followers</span>
+    {% if user.location %}<span>{{ user.location }}</span>{% endif %}
+  </div>
+</div>

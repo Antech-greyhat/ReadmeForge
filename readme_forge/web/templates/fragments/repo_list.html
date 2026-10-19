@@ -1,0 +1,12 @@
+{% for repo in repos %}
+<label class="repo-row" data-search="{{ (repo.name ~ ' ' ~ repo.description) | lower }}">
+  <input type="checkbox" value="{{ repo.name }}">
+  <span class="repo-info">
+    <span class="repo-name">{{ repo.name }}</span>
+    <span class="repo-desc">{{ repo.description or "No description" }}</span>
+  </span>
+  <span class="repo-stars">&#9733; {{ repo.stargazers_count }}</span>
+</label>
+{% else %}
+<p class="hint">No public repositories to feature.</p>
+{% endfor %}
