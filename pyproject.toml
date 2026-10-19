@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "readme-forge"
+dynamic = ["version"]
+description = "Generate GitHub profile READMEs from a username, from the terminal or a web UI."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Antony Mwendwa" }]
+requires-python = ">=3.10"
+dependencies = []
+classifiers = [
+    "Environment :: Console",
+    "Environment :: Web Environment",
+    "Framework :: Flask",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Documentation",
+]
+
+[project.optional-dependencies]
+web = [
+    "flask>=3.0",
+    "flask-limiter>=3.5",
+    "markdown-it-py>=3.0",
+    "nh3>=0.2.14",
+]
+deploy = ["readme-forge[web]", "gunicorn>=22.0"]
+dev = ["readme-forge[web]", "pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+readme-forge = "readme_forge.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Antech-greyhat/ReadmeForge"
+Issues = "https://github.com/Antech-greyhat/ReadmeForge/issues"
+
+[tool.setuptools.dynamic]
+version = { attr = "readme_forge.__init__.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["readme_forge*"]
+
+[tool.setuptools.package-data]
+readme_forge = ["icons/*.svg", "icons/LICENSE", "web/templates/**/*.html", "web/static/**/*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+# The generated README deliberately uses typographic apostrophes.
+allowed-confusables = ["’"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
