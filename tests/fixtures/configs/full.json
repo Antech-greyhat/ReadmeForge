@@ -1,0 +1,51 @@
+{
+  "username": "octocat",
+  "sections": [
+    "banner", "hero", "header", "typing", "badges", "about", "profilestats", "connect",
+    "techstack", "featured", "stats", "streak", "activity", "cards", "trophies", "contrib3d",
+    "chart", "learning", "quote", "gitanimals", "funzone", "snake", "sponsors", "footerwave"
+  ],
+  "socials": {
+    "twitter": "@octo_cat",
+    "linkedin": "octo-cat",
+    "email": "octo@example.com",
+    "devto": "octocat",
+    "discord": "octo#0001",
+    "stackoverflow": "1234567",
+    "youtube": "@github",
+    "website": "github.blog",
+    "instagram": "github",
+    "facebook": "GitHub",
+    "gitlab": "octo-cat",
+    "bitbucket": "octocat"
+  },
+  "options": {
+    "theme": "dracula",
+    "typingLines": ["Ships code; reads docs", "C++ & Objective-C"],
+    "bannerText": "Octo <Cat>",
+    "learningText": "Rust | WebAssembly\nand [markdown]",
+    "trophyRows": 2,
+    "trophyCols": 4,
+    "featuredLayout": "cards",
+    "featuredCount": 6,
+    "showViews": false,
+    "heroGif": "javascript:alert(1)",
+    "aboutGif": "https://example.com/about.gif",
+    "headingGif": true,
+    "working": "a <script>alert(1)</script> tool",
+    "workingUrl": "example.com/tool",
+    "collab": "open source",
+    "askMe": "Git | GitHub",
+    "funFact": "It works on my machine",
+    "footerText": "See you & bye"
+  },
+  "custom": {
+    "name": "Octo \"The\" Cat",
+    "tagline": "Mascot & <Engineer>",
+    "bio": "<img src=x onerror=alert(1)>",
+    "location": "St. Louis, MO",
+    "website": "javascript:alert(1)"
+  },
+  "featured": ["Spoon-Knife", "Hello-World", "does-not-exist"],
+  "langs": ["HTML", "CSS", "Objective-C", "C#"]
+}
