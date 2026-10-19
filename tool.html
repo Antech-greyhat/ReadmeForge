@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>README.forge — GitHub Profile Builder</title>
+<link rel="icon" type="image/png" sizes="32x32" href="image/favicon.png">
+<link rel="icon" type="image/svg+xml" href="image/favicon.svg">
+<link rel="shortcut icon" href="image/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tool.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"
+        integrity="sha512-pmjEJQ7CveksANaAKdCJZMig7eAcCFFzE1b5XnlnxdB/vU3AOStJ5SF7w4tFuqskuU31ETnAaWTYRQOYg2WHKw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">R</div>
+    README<span>.forge</span>
+  </div>
+  <div class="header-actions">
+    <div id="status-indicator" class="status-indicator">
+      <span class="status-dot" id="status-dot"></span>
+      <span id="status-text">Ready</span>
+    </div>
+    <button class="btn btn-ghost" id="copy-btn" type="button">⎘ Copy</button>
+    <button class="btn btn-accent" id="export-btn" type="button">↓ Export .md</button>
+  </div>
+</header>
+
+<!-- APP -->
+<div class="app">
+
+  <!-- LEFT PANEL -->
+  <aside class="panel-left">
+
+    <!-- URL Input -->
+    <div class="panel-section">
+      <div class="section-label">GitHub Profile URL</div>
+      <div class="url-input-wrap">
+        <input type="text" class="url-input" id="gh-url"
+          placeholder="github.com/username" autocomplete="off" spellcheck="false">
+        <button class="fetch-btn" id="fetch-btn" type="button" title="Fetch profile" aria-label="Fetch profile">
+          <span>→</span>
+        </button>
+      </div>
+      <div class="loading-bar" id="loading-bar"></div>
+      <div class="error-msg" id="error-msg" role="alert"></div>
+    </div>
+
+    <!-- Profile Card -->
+    <div class="panel-section" id="profile-section" hidden>
+      <div class="section-label">Profile Fetched</div>
+      <div class="profile-card show" id="profile-card"></div>
+    </div>
+
+    <!-- Scrollable controls -->
+    <div class="panel-scroll">
+
+      <!-- Customize -->
+      <div class="panel-section" id="customize-section" hidden>
+        <div class="section-label">Customize</div>
+        <div class="custom-field">
+          <label for="c-name">Display Name</label>
+          <input type="text" class="custom-input" id="c-name">
+        </div>
+        <div class="custom-field">
+          <label for="c-tagline">Tagline / Title</label>
+          <input type="text" class="custom-input" id="c-tagline" placeholder="e.g. Full-Stack Engineer">
+        </div>
+        <div class="custom-field">
+          <label for="c-bio">Bio</label>
+          <textarea class="custom-textarea" id="c-bio"></textarea>
+        </div>
+        <div class="custom-field">
+          <label for="c-location">Location</label>
+          <input type="text" class="custom-input" id="c-location">
+        </div>
+        <div class="custom-field">
+          <label for="c-website">Website</label>
+          <input type="text" class="custom-input" id="c-website" placeholder="example.com">
+        </div>
+        <div class="custom-field">
+          <label for="typing-lines">Animated Typing Lines <span class="hint">one per line</span></label>
+          <textarea class="custom-textarea" id="typing-lines"></textarea>
+        </div>
+        <div class="custom-field">
+          <label for="banner-text">Banner Text</label>
+          <input type="text" class="custom-input" id="banner-text">
+        </div>
+        <div class="custom-field">
+          <label for="learning-text">Currently Learning</label>
+          <textarea class="custom-textarea" id="learning-text"></textarea>
+        </div>
+      </div>
+
+      <!-- Showcase -->
+      <div class="panel-section" id="showcase-section" hidden>
+        <div class="section-label">Showcase <span class="hint">rich profile sections</span></div>
+        <div class="custom-field">
+          <label for="preset-select">Layout Preset</label>
+          <div class="url-input-wrap">
+            <select class="custom-select" id="preset-select">
+              <option value="showcase">Showcase (hero, about, cards, snake…)</option>
+              <option value="classic">Classic</option>
+            </select>
+            <button class="btn btn-ghost btn-sm" id="preset-apply" type="button">Apply</button>
+          </div>
+        </div>
+        <div class="custom-field">
+          <label for="s-working">Currently Working On</label>
+          <input type="text" class="custom-input" id="s-working" placeholder="e.g. a portfolio template">
+        </div>
+        <div class="custom-field">
+          <label for="s-working-url">Working On Link</label>
+          <input type="text" class="custom-input" id="s-working-url" placeholder="https://...">
+        </div>
+        <div class="custom-field">
+          <label for="s-collab">Looking to Collaborate On</label>
+          <input type="text" class="custom-input" id="s-collab" placeholder="open-source JS tooling">
+        </div>
+        <div class="custom-field">
+          <label for="s-askme">Ask Me About</label>
+          <input type="text" class="custom-input" id="s-askme" placeholder="React, Next.js, cloud">
+        </div>
+        <div class="custom-field">
+          <label for="s-funfact">Fun Fact</label>
+          <input type="text" class="custom-input" id="s-funfact" placeholder="It works on my machine 😃">
+        </div>
+        <div class="custom-field">
+          <label for="s-hero-gif">Hero GIF URL <span class="hint">blank = default</span></label>
+          <input type="text" class="custom-input" id="s-hero-gif" placeholder="https://...gif">
+        </div>
+        <div class="custom-field">
+          <label for="s-about-gif">About Me GIF URL <span class="hint">blank = default</span></label>
+          <input type="text" class="custom-input" id="s-about-gif" placeholder="https://...gif">
+        </div>
+        <div class="custom-field">
+          <label for="s-footer-text">Footer Wave Text</label>
+          <input type="text" class="custom-input" id="s-footer-text" placeholder="Thanks for visiting my profile!">
+        </div>
+        <label class="check-row">
+          <input type="checkbox" id="heading-gif">
+          <span>Animated accent next to headings</span>
+        </label>
+      </div>
+
+      <!-- Socials -->
+      <div class="panel-section" id="socials-section" hidden>
+        <div class="section-label">Social Links <span class="hint">blank = omitted</span></div>
+        <div class="custom-field">
+          <label for="twitter-input">X / Twitter</label>
+          <input type="text" class="custom-input" id="twitter-input" placeholder="handle">
+        </div>
+        <div class="custom-field">
+          <label for="linkedin-input">LinkedIn</label>
+          <input type="text" class="custom-input" id="linkedin-input" placeholder="in/your-name">
+        </div>
+        <div class="custom-field">
+          <label for="email-input">Email</label>
+          <input type="email" class="custom-input" id="email-input" placeholder="you@example.com">
+        </div>
+        <div class="custom-field">
+          <label for="devto-input">dev.to</label>
+          <input type="text" class="custom-input" id="devto-input" placeholder="username">
+        </div>
+        <div class="custom-field">
+          <label for="discord-input">Discord <span class="hint">badge only</span></label>
+          <input type="text" class="custom-input" id="discord-input" placeholder="user#0000">
+        </div>
+        <div class="custom-field">
+          <label for="stackoverflow-input">Stack Overflow <span class="hint">user id</span></label>
+          <input type="text" class="custom-input" id="stackoverflow-input" placeholder="1234567">
+        </div>
+        <div class="custom-field">
+          <label for="youtube-input">YouTube</label>
+          <input type="text" class="custom-input" id="youtube-input" placeholder="channel">
+        </div>
+        <div class="custom-field">
+          <label for="website-input">Website Badge</label>
+          <input type="text" class="custom-input" id="website-input" placeholder="example.com">
+        </div>
+        <div class="custom-field">
+          <label for="instagram-input">Instagram</label>
+          <input type="text" class="custom-input" id="instagram-input" placeholder="handle">
+        </div>
+        <div class="custom-field">
+          <label for="facebook-input">Facebook</label>
+          <input type="text" class="custom-input" id="facebook-input" placeholder="page or profile">
+        </div>
+        <div class="custom-field">
+          <label for="gitlab-input">GitLab</label>
+          <input type="text" class="custom-input" id="gitlab-input" placeholder="username">
+        </div>
+        <div class="custom-field">
+          <label for="bitbucket-input">Bitbucket</label>
+          <input type="text" class="custom-input" id="bitbucket-input" placeholder="workspace">
+        </div>
+      </div>
+
+      <!-- Featured Projects -->
+      <div class="panel-section" id="featured-section" hidden>
+        <div class="section-label section-label-row">
+          <span>Featured Projects</span>
+          <span class="section-count" id="featured-count">0 selected</span>
+        </div>
+        <input type="text" class="custom-input" id="featured-filter"
+          placeholder="Filter repos..." autocomplete="off">
+        <div class="repo-list" id="featured-list"></div>
+      </div>
+
+      <!-- Sections -->
+      <div class="panel-section" id="sections-section" hidden>
+        <div class="section-label section-label-row">
+          <span>Sections <span class="hint">▲▼ to reorder</span></span>
+          <span class="section-count" id="section-count">— active</span>
+        </div>
+        <div id="section-toggles"></div>
+      </div>
+
+      <!-- Languages -->
+      <div class="panel-section" id="langs-section" hidden>
+        <div class="section-label">Tech Stack <span class="hint">click to toggle</span></div>
+        <div class="lang-tags" id="lang-tags"></div>
+      </div>
+
+      <!-- Appearance -->
+      <div class="panel-section" id="appearance-section" hidden>
+        <div class="section-label">Appearance</div>
+        <div class="custom-field">
+          <label for="theme-select">Widget Theme</label>
+          <select class="custom-select" id="theme-select"></select>
+        </div>
+        <div class="custom-field">
+          <label for="featured-layout">Featured Layout</label>
+          <select class="custom-select" id="featured-layout">
+            <option value="table">Table</option>
+            <option value="cards">Pin Cards</option>
+          </select>
+        </div>
+        <div class="field-row">
+          <div class="custom-field">
+            <label for="trophy-rows">Trophy Rows</label>
+            <input type="number" class="custom-input" id="trophy-rows" min="1" max="6">
+          </div>
+          <div class="custom-field">
+            <label for="trophy-cols">Trophy Cols</label>
+            <input type="number" class="custom-input" id="trophy-cols" min="1" max="7">
+          </div>
+        </div>
+        <label class="check-row">
+          <input type="checkbox" id="show-views">
+          <span>Profile views counter</span>
+        </label>
+      </div>
+
+      <!-- Advanced (visible before first fetch so a rate-limited user can recover) -->
+      <details class="panel-section" id="advanced-section">
+        <summary class="section-label">
+          <span>Advanced</span>
+          <span class="rate-pill" id="rate-pill">limit —</span>
+        </summary>
+        <div class="warn-box">
+          Unauthenticated GitHub calls are capped at 60/hour. A token raises this
+          to 5,000/hour. Use a <strong>classic token with no scopes checked</strong> —
+          it only needs public data. It is stored in this browser's localStorage.
+        </div>
+        <div class="custom-field">
+          <label for="pat-input">Personal Access Token</label>
+          <div class="url-input-wrap">
+            <input type="password" class="custom-input" id="pat-input"
+              placeholder="ghp_..." autocomplete="off" spellcheck="false">
+            <button class="btn btn-ghost btn-sm" id="pat-toggle" type="button" aria-pressed="false">Show</button>
+          </div>
+        </div>
+        <div class="field-row">
+          <button class="btn btn-ghost btn-sm" id="pat-forget" type="button">Forget token</button>
+          <button class="btn btn-ghost btn-sm" id="reset-prefs" type="button">Reset prefs</button>
+        </div>
+        <div class="field-row">
+          <button class="btn btn-ghost btn-sm" id="export-config" type="button"
+            title="Settings file for the readme_forge.py CLI">Export config (.json)</button>
+        </div>
+      </details>
+
+    </div><!-- /panel-scroll -->
+
+  </aside>
+
+  <!-- CENTER: PREVIEW -->
+  <main class="panel-center">
+    <div class="preview-tabs" role="tablist">
+      <button class="preview-tab active" type="button" data-tab="preview"
+        role="tab" aria-selected="true" aria-controls="preview-pane">⬡ Preview</button>
+      <button class="preview-tab" type="button" data-tab="raw"
+        role="tab" aria-selected="false" aria-controls="raw-pane">⌘ Markdown</button>
+      <button class="preview-tab" type="button" data-tab="workflows" id="workflows-tab"
+        role="tab" aria-selected="false" aria-controls="workflows-pane">⚙ Workflows</button>
+    </div>
+    <div class="preview-body">
+      <div id="preview-pane" class="active" role="tabpanel">
+        <div class="empty-state" id="empty-state">
+          <div class="empty-icon">◈</div>
+          <div class="empty-title">Your README awaits</div>
+          <div class="empty-desc">Paste a GitHub profile URL and hit → to generate a stunning profile README instantly.</div>
+        </div>
+        <div class="gh-preview" id="gh-preview" hidden></div>
+      </div>
+      <div id="raw-pane" role="tabpanel">
+        <pre id="raw-code"></pre>
+      </div>
+      <div id="workflows-pane" role="tabpanel">
+        <pre id="workflows-code">Fetch a profile to see which GitHub Actions your README needs.</pre>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span class="toast-icon" id="toast-icon">✓</span>
+  <span id="toast-msg">Done!</span>
+</div>
+
+<script src="tool.js"></script>
+</body>
+</html>
