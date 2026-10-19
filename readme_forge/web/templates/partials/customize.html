@@ -1,0 +1,38 @@
+<div class="panel-section" data-needs-profile hidden>
+  <div class="section-label">Customize</div>
+  <div class="custom-field">
+    <label for="c-name">Display Name</label>
+    <input type="text" class="custom-input" id="c-name" data-bind="custom.name">
+  </div>
+  <div class="custom-field">
+    <label for="c-tagline">Tagline</label>
+    <input type="text" class="custom-input" id="c-tagline" data-bind="custom.tagline"
+           placeholder="e.g. Full-Stack Engineer">
+  </div>
+  <div class="custom-field">
+    <label for="c-bio">Bio</label>
+    <textarea class="custom-textarea" id="c-bio" data-bind="custom.bio"></textarea>
+  </div>
+  <div class="custom-field">
+    <label for="c-location">Location</label>
+    <input type="text" class="custom-input" id="c-location" data-bind="custom.location">
+  </div>
+  <div class="custom-field">
+    <label for="c-website">Website</label>
+    <input type="text" class="custom-input" id="c-website" data-bind="custom.website"
+           placeholder="example.com">
+  </div>
+  <div class="custom-field">
+    <label for="o-typing">Animated Typing Lines <span class="hint">one per line, blank = auto</span></label>
+    <textarea class="custom-textarea" id="o-typing" data-bind="options.typingLines" data-type="lines"></textarea>
+  </div>
+  <div class="custom-field">
+    <label for="o-banner">Banner Text <span class="hint">blank = display name</span></label>
+    <input type="text" class="custom-input" id="o-banner" data-bind="options.bannerText">
+  </div>
+  <div class="custom-field">
+    <label for="o-learning">Currently Learning</label>
+    <textarea class="custom-textarea" id="o-learning" data-bind="options.learningText"
+              placeholder="I'm always exploring new technologies and expanding my skill set."></textarea>
+  </div>
+</div>

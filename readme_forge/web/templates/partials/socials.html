@@ -1,0 +1,16 @@
+{% set placeholders = {
+  "twitter": "handle", "linkedin": "your-name", "email": "you@example.com",
+  "devto": "username", "discord": "user#0000", "stackoverflow": "user id",
+  "youtube": "channel", "website": "example.com", "instagram": "handle",
+  "facebook": "page or profile", "gitlab": "username", "bitbucket": "workspace",
+} %}
+<div class="panel-section" data-needs-profile hidden>
+  <div class="section-label">Social Links <span class="hint">blank = omitted</span></div>
+  {% for key, social in socials.items() %}
+  <div class="custom-field">
+    <label for="s-{{ key }}">{{ social.label }}{% if social.href is none %} <span class="hint">badge only</span>{% endif %}</label>
+    <input type="text" class="custom-input" id="s-{{ key }}" data-bind="socials.{{ key }}"
+           placeholder="{{ placeholders[key] }}" autocomplete="off">
+  </div>
+  {% endfor %}
+</div>

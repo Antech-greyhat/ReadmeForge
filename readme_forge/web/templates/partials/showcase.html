@@ -1,0 +1,35 @@
+<div class="panel-section" data-needs-profile hidden>
+  <div class="section-label">Showcase <span class="hint">rich profile sections</span></div>
+  <div class="custom-field">
+    <label for="preset-select">Layout Preset</label>
+    <div class="url-input-wrap">
+      <select class="custom-select" id="preset-select">
+        {% for name in presets %}
+        <option value="{{ name }}"{% if name == "showcase" %} selected{% endif %}>{{ name | capitalize }}</option>
+        {% endfor %}
+      </select>
+      <button class="btn btn-ghost btn-sm" id="preset-apply" type="button">Apply</button>
+    </div>
+  </div>
+  {% set fields = [
+    ("working", "Currently Working On", "e.g. a portfolio template"),
+    ("workingUrl", "Working On Link", "https://..."),
+    ("collab", "Looking to Collaborate On", "open-source tooling"),
+    ("askMe", "Ask Me About", "Python, Flask, security"),
+    ("funFact", "Fun Fact", "It works on my machine"),
+    ("heroGif", "Hero GIF URL (blank = default)", "https://...gif"),
+    ("aboutGif", "About Me GIF URL (blank = default)", "https://...gif"),
+    ("footerText", "Footer Wave Text", "Thanks for visiting my profile!"),
+  ] %}
+  {% for key, label, placeholder in fields %}
+  <div class="custom-field">
+    <label for="o-{{ key }}">{{ label }}</label>
+    <input type="text" class="custom-input" id="o-{{ key }}" data-bind="options.{{ key }}"
+           placeholder="{{ placeholder }}">
+  </div>
+  {% endfor %}
+  <label class="check-row">
+    <input type="checkbox" id="o-headingGif" data-bind="options.headingGif">
+    <span>Animated accent next to headings</span>
+  </label>
+</div>

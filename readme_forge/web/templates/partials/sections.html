@@ -1,0 +1,18 @@
+<div class="panel-section" data-needs-profile hidden>
+  <div class="section-label section-label-row">
+    <span>Sections <span class="hint">reorder with the arrows</span></span>
+    <span class="section-count" id="section-count"></span>
+  </div>
+  <div id="section-toggles">
+    {% for s in sections %}
+    <div class="section-toggle-row" data-section="{{ s.id }}">
+      <button class="reorder-btn" type="button" data-move="-1" aria-label="Move {{ s.label }} up">&#9650;</button>
+      <button class="reorder-btn" type="button" data-move="1" aria-label="Move {{ s.label }} down">&#9660;</button>
+      <span class="section-toggle-label">{{ s.label }}{% if s.workflow %} <span class="hint">needs workflow</span>{% endif %}</span>
+      <button class="toggle{% if s.default_on %} on{% endif %}" type="button" role="switch"
+              aria-checked="{{ 'true' if s.default_on else 'false' }}" aria-label="Include {{ s.label }}"
+              data-default="{{ 'on' if s.default_on else 'off' }}"></button>
+    </div>
+    {% endfor %}
+  </div>
+</div>

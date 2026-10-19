@@ -1,0 +1,34 @@
+<details class="panel-section" id="advanced-section">
+  <summary class="section-label">
+    <span>Advanced</span>
+    <span class="rate-pill" id="rate-pill" title="GitHub API quota left on this server">quota &mdash;</span>
+  </summary>
+  {% if not public %}
+  <div class="note-box">
+    {% if token_configured %}
+    The server is using <strong>GITHUB_TOKEN</strong> (5,000 requests per hour).
+    {% else %}
+    No <strong>GITHUB_TOKEN</strong> is set, so the server is limited to 60 GitHub requests
+    per hour. Export a classic token with no scopes, then restart <code>readme-forge serve</code>.
+    {% endif %}
+    Tokens are never entered in or sent from this page.
+  </div>
+  {% endif %}
+  <div class="section-label">Widget Instances <span class="hint">blank = default</span></div>
+  {% for name in instance_names %}
+  <div class="custom-field">
+    <label for="i-{{ name }}">{{ name | capitalize }}</label>
+    <input type="url" class="custom-input" id="i-{{ name }}" data-bind="instances.{{ name }}"
+           placeholder="{{ instances[name] }}" autocomplete="off">
+  </div>
+  {% endfor %}
+  <div class="field-row">
+    <button class="btn btn-ghost btn-sm" id="export-config" type="button">Export config</button>
+    <button class="btn btn-ghost btn-sm" id="import-config" type="button">Import config</button>
+    <input type="file" id="import-file" accept="application/json,.json" hidden>
+  </div>
+  <div class="field-row">
+    <button class="btn btn-ghost btn-sm" id="reset-prefs" type="button">Reset preferences</button>
+  </div>
+  <p class="hint version">README.forge {{ version }}</p>
+</details>

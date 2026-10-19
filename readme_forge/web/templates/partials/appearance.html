@@ -1,0 +1,52 @@
+<div class="panel-section" data-needs-profile hidden>
+  <div class="section-label">Appearance</div>
+  <div class="custom-field">
+    <label for="o-theme">Widget Theme</label>
+    <select class="custom-select" id="o-theme" data-bind="options.theme">
+      {% for theme in themes %}
+      <option value="{{ theme.id }}"{% if loop.first %} selected{% endif %}>{{ theme.label }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="custom-field">
+    <label for="o-iconStyle">Heading Icons</label>
+    <select class="custom-select" id="o-iconStyle" data-bind="options.iconStyle">
+      <option value="emoji" selected>Emoji</option>
+      <option value="iconify">Tabler icons via Iconify</option>
+      <option value="local">Tabler icons stored in your repo</option>
+    </select>
+  </div>
+  <p class="note-box" id="local-icons-note" hidden>
+    Local icons live in your profile repo. Download
+    <a id="icons-zip" href="{{ url_for('web.icon_bundle', theme='tokyonight') }}">icons.zip</a>
+    and extract it next to your README, or run
+    <code>readme-forge --config forge.config.json --assets assets</code>.
+  </p>
+  <div class="custom-field">
+    <label for="o-featuredLayout">Featured Layout</label>
+    <select class="custom-select" id="o-featuredLayout" data-bind="options.featuredLayout">
+      <option value="table" selected>Table</option>
+      <option value="cards">Pin Cards</option>
+    </select>
+  </div>
+  <div class="field-row">
+    <div class="custom-field">
+      <label for="o-trophyRows">Trophy Rows</label>
+      <input type="number" class="custom-input" id="o-trophyRows" data-bind="options.trophyRows"
+             min="1" max="6" value="1">
+    </div>
+    <div class="custom-field">
+      <label for="o-trophyCols">Trophy Cols</label>
+      <input type="number" class="custom-input" id="o-trophyCols" data-bind="options.trophyCols"
+             min="1" max="7" value="7">
+    </div>
+  </div>
+  <label class="check-row">
+    <input type="checkbox" id="o-showViews" data-bind="options.showViews" checked>
+    <span>Profile views counter</span>
+  </label>
+  <label class="check-row">
+    <input type="checkbox" id="o-credit" data-bind="options.credit" checked>
+    <span>Credit footer ("Made with ❤️ by Antech-greyhat")</span>
+  </label>
+</div>
