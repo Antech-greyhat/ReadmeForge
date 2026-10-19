@@ -1,0 +1,10 @@
+{
+  "builds": [
+    {
+      "src": "wsgi.py",
+      "use": "@vercel/python",
+      "config": { "includeFiles": ["readme_forge/**"] }
+    }
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "wsgi.py" }]
+}

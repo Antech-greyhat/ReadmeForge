@@ -1,0 +1,7 @@
+# Runtime dependencies for platforms that install from requirements.txt (Vercel, Render).
+# Keep in sync with the "deploy" extra in pyproject.toml; tests/test_packaging.py checks it.
+flask>=3.0
+flask-limiter>=3.5
+markdown-it-py>=3.0
+nh3>=0.2.14
+gunicorn>=22.0
