@@ -2,7 +2,7 @@
 
 ![README.forge](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,24&height=200&section=header&text=README.forge&fontSize=80&fontColor=ffffff&animation=fadeIn)
 
-[![GitHub Stars](https://img.shields.io/github/stars/Antech-greyhat/ReadmeGenerator?style=for-the-badge&logo=github&color=7C6AF7)](https://github.com/Antech-greyhat/ReadmeGenerator)
+[![GitHub Stars](https://img.shields.io/github/stars/Antech-greyhat/ReadmeForge?style=for-the-badge&logo=github&color=7C6AF7)](https://github.com/Antech-greyhat/ReadmeGenerator)
 [![License](https://img.shields.io/badge/License-MIT-7C6AF7?style=for-the-badge)](#license)
 [![Vanilla JS](https://img.shields.io/badge/Vanilla-JS-7C6AF7?style=for-the-badge&logo=javascript&logoColor=white)](https://github.com/Antech-greyhat/ReadmeGenerator)
 [![Python CLI](https://img.shields.io/badge/Python-CLI-7C6AF7?style=for-the-badge&logo=python&logoColor=white)](#python-cli)
